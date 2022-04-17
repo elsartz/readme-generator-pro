@@ -2,7 +2,6 @@
 const ids = require('spdx-license-ids');
 const inquirer = require('inquirer');
 // console.log(ids);
-// console.log(inquirer);
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -43,6 +42,126 @@ const questions = [
     }
 ];
 
+const promptTableofContent = (tableOfContent) => {
+    // if (!tableOfContent) {
+    //     tableOfContent.content = [];
+    // }
+    console.log(`
+    =============
+    Add a Section
+    =============
+    `);
+    return inquirer.prompt([
+        {
+            type: 'confirm',
+            name: 'confirmInstall',
+            message: 'Would you like to add a section about "Installation"?',
+            default: false
+        },
+            {
+                type: 'input',
+                name: 'sectionInstall',
+                message: 'Enter paragraph describing installation: ',
+                when: ({ confirmInstall }) => {
+                    if (!confirmInstall) {
+                        sectionInstall = [];
+                        sectionInstall.push();                       
+                        return false;
+                    } else {
+                        sectionInstall = [];
+                        return true;
+                    }
+                } 
+            },
+        {
+            type: 'confirm',
+            name: 'confirmUsage',
+            message: 'Would you like to add a section about "Usage"?',
+            default: false
+        },
+        {
+                type: 'input',
+                name: 'sectionUsage',
+                message: 'Enter a paragraph describing usage: ',
+                when: ({ confirmUsage }) => {
+                    if (!confirmUsage) {
+                        sectionUsage = [];
+                        sectionUsage.push();                       
+                        return false;
+                    } else {
+                        sectionUsage = [];
+                        return true;
+                    }
+                } 
+        },
+        {
+            type: 'confirm',
+            name: 'confirmCredits',
+            message: 'Would you like to add a section about "Credits"?',
+            default: false
+        },
+        {
+                type: 'input',
+                name: 'sectionCredit',
+                message: 'Enter a participant or contributor: ',
+                when: ({ confirmCredits }) => {
+                    if (!confirmCredits) {
+                        sectionCredit = [];
+                        sectionCredit.push();                       
+                        return false;
+                    } else {
+                        sectionCredit = [];
+                        return true;
+                    }
+                } 
+        },
+        {
+            type: 'confirm',
+            name: 'confirmLicense',
+            message: 'Would you like to add a section about "License"?',
+            default: false
+        },
+        {
+            type: 'input',
+            name: 'sectionLicense',
+            message: "Enter your project's license here: ",
+            when: ({ confirmLicense }) => {
+                if (!confirmLicense) {
+                    sectionLicense = [];
+                    sectionLicense.push();                       
+                    return false;
+                } else {
+                    sectionLicense = [];
+                    return true;
+                }
+            } 
+        },
+        {
+            type: 'confirm',
+            name: 'confirmTests',
+            message: 'Would you like to add a section about "Tests"?',
+            default: false
+        },
+        {
+            type: 'input',
+            name: 'sectionTests',
+            message: 'Enter an example of your test: ',
+            when: ({ confirmTests }) => {
+                if (!confirmTests) {
+                    sectionTests = [];
+                    sectionTests.push();                       
+                    return false;
+                } else {
+                    sectionTests = [];
+                    return true;
+                }
+            } 
+        }
+        
+    ])
+    
+}
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
@@ -51,7 +170,12 @@ function init() {
     inquirer.prompt(questions).then((answers) => {
         console.log(JSON.stringify(answers));
     })
+    .then(promptTableofContent)
+    .then((tableOfContent) => {
+        console.log(JSON.stringify(tableOfContent))
+})
 }
 
 // Function call to initialize app
-init();
+init()
+    
