@@ -7,10 +7,10 @@ const inquirer = require('inquirer');
 const questions = [
     {
         type: 'input',
-        name: 'name',
+        name: 'title',
         message: 'Please enter the Title of your project (Required)',
-        validate: nameInput => {
-            if (nameInput) {
+        validate: titleInput => {
+            if (titleInput) {
                 return true;                
             } else {
                 console.log('Please enter a Title');
@@ -24,7 +24,7 @@ const questions = [
     },
     {
         type: 'confirm',
-        name: 'confirmFull',
+        name: 'full',
         message: 'Would you like to add a Full description of your project?',
         default: false
     },
@@ -32,17 +32,18 @@ const questions = [
         type: 'input',
         name: 'paragraph',
         message: 'Please enter a paragraph about your project:',
-        when: ({confirmFull}) => {
-            if (!confirmFull) {
+        when: ({full}) => {
+            if (!full) {
                 return false;
             } else {
+                paragraph = '';
                 return true;
             }
         }
     }
 ];
 
-const promptTableofContent = (tableOfContent) => {
+const promptTableofContent = () => {
     // if (!tableOfContent) {
     //     tableOfContent.content = [];
     // }
@@ -54,7 +55,7 @@ const promptTableofContent = (tableOfContent) => {
     return inquirer.prompt([
         {
             type: 'confirm',
-            name: 'confirmInstall',
+            name: 'Install',
             message: 'Would you like to add a section about "Installation"?',
             default: false
         },
@@ -62,8 +63,8 @@ const promptTableofContent = (tableOfContent) => {
                 type: 'input',
                 name: 'sectionInstall',
                 message: 'Enter paragraph describing installation: ',
-                when: ({ confirmInstall }) => {
-                    if (!confirmInstall) {
+                when: ({ Install }) => {
+                    if (!Install) {
                         sectionInstall = [];
                         sectionInstall.push();                       
                         return false;
@@ -167,12 +168,12 @@ function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions).then((answers) => {
-        console.log(JSON.stringify(answers));
+    inquirer.prompt(questions).then((data) => {
+        console.log(JSON.stringify(data));
     })
     .then(promptTableofContent)
-    .then((tableOfContent) => {
-        console.log(JSON.stringify(tableOfContent))
+    .then((data) => {
+        console.log(JSON.stringify(data))
 })
 }
 

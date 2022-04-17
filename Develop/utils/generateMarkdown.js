@@ -12,8 +12,22 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  const install = data.Install;
+    if (install) {
+     installation = `-### [Installation](#Installation)`
+    } else {
+      return '';
+    }
+  
   return `# ${data.title}
+  
+  ## ${data.description}
+  
+  > ${data.paragraph}
 
+  ## Table of Contents
+  ${installation}
+  
 `;
 }
 
