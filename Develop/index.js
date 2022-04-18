@@ -288,21 +288,18 @@ function writeToFile(data) {
         })
     })
 }
-var readme = {};
+
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions).then((data) => {
-        console.log(JSON.stringify(data));
-        readme = JSON.stringify(data);
-        return generateMarkdown(data);
-    })
-    .then(readme => {
-        // console.log(data);
-        return writeToFile(readme);
-    })
-    .catch(err => { console.log(err) })
+    return inquirer.prompt(questions)    
 };
 
 // Function call to initialize app
-init();
+init()
+    .then((data) => {
+        
+        generateMarkdown(data);
+        return writeToFile(content);
+    })
+    .catch(err => { console.log(err) })
     

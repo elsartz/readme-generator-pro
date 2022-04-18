@@ -22,35 +22,27 @@ function generateMarkdown(data) {
       return install = '';      
     }
 
-  const usage = data.Usage;
-    if (usage) {
-      usagerow = `-### [Usage](#Usage)`
-    } else {
-      return usagerow = '';
+  const usage = `-### [Usage](#Usage)`;
+    if (!data.Usage) {
+      return usage = '';
     }
   
-  const credits = data.Credits;
-    if (credits) {
-      creditsrow = `-### [Credits](#Credits)`
-    } else {
-      return creditsrow = '';
+  const credits = `-### [Credits](#Credits)`;
+    if (!data.Credits) {
+      return credits = '';
     }
   
-  const license = data.License;
-    if (license) {
-      licenserow = `-### [License](#License)`
-    } else {
-      return licensesrow = '';
+  const license = `-### [License](#License)`;
+    if (!data.License) {
+      return license = '';
     }
 
-  const tests = data.Tests;
-    if (tests) {
-      testsrow = `-### [Tests](#Tests)`
-    } else {
-      return testsrow = '';
+  const tests = `-### [Tests](#Tests)`;
+    if (!data.Tests) {
+      return tests = '';
     }
   
-  return `# ${data.title}
+  return content = `# ${data.title}
   
   ## ${data.description}
   
@@ -58,13 +50,14 @@ function generateMarkdown(data) {
 
   ## Table of Contents
   ${install}
-  ${usagerow}
-  ${creditsrow}
-  ${licenserow}
-  ${testrow}
+  ${usage}
+  ${credits}
+  ${license}
+  ${tests}
 
-  
+
 `;
+
 }
 
 module.exports = generateMarkdown;
