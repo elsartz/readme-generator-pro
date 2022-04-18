@@ -16,7 +16,35 @@ function generateMarkdown(data) {
     if (install) {
      installation = `-### [Installation](#Installation)`
     } else {
-      return '';
+      return installation = '';
+    }
+
+  const usage = data.Usage;
+    if (usage) {
+      usagerow = `-### [Usage](#Usage)`
+    } else {
+      return usagerow = '';
+    }
+  
+  const credits = data.Credits;
+    if (credits) {
+      creditsrow = `-### [Credits](#Credits)`
+    } else {
+      return creditsrow = '';
+    }
+  
+  const license = data.License;
+    if (license) {
+      licenserow = `-### [License](#License)`
+    } else {
+      return licensesrow = '';
+    }
+
+  const tests = data.Tests;
+    if (tests) {
+      testsrow = `-### [Tests](#Tests)`
+    } else {
+      return testsrow = '';
     }
   
   return `# ${data.title}
@@ -27,7 +55,10 @@ function generateMarkdown(data) {
 
   ## Table of Contents
   ${installation}
-  
+  ${usagerow}
+  ${creditsrow}
+  ${licenserow}
+  ${testrow}
 `;
 }
 

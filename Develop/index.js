@@ -1,6 +1,8 @@
 // TODO: Include packages needed for this application
 const ids = require('spdx-license-ids');
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 // console.log(ids);
 
 // TODO: Create an array of questions for user input
@@ -76,7 +78,7 @@ const promptTableofContent = () => {
             },
         {
             type: 'confirm',
-            name: 'confirmUsage',
+            name: 'Usage',
             message: 'Would you like to add a section about "Usage"?',
             default: false
         },
@@ -84,8 +86,8 @@ const promptTableofContent = () => {
                 type: 'input',
                 name: 'sectionUsage',
                 message: 'Enter a paragraph describing usage: ',
-                when: ({ confirmUsage }) => {
-                    if (!confirmUsage) {
+                when: ({ Usage }) => {
+                    if (!Usage) {
                         sectionUsage = [];
                         sectionUsage.push();                       
                         return false;
@@ -97,7 +99,7 @@ const promptTableofContent = () => {
         },
         {
             type: 'confirm',
-            name: 'confirmCredits',
+            name: 'Credits',
             message: 'Would you like to add a section about "Credits"?',
             default: false
         },
@@ -105,8 +107,8 @@ const promptTableofContent = () => {
                 type: 'input',
                 name: 'sectionCredit',
                 message: 'Enter a participant or contributor: ',
-                when: ({ confirmCredits }) => {
-                    if (!confirmCredits) {
+                when: ({ Credits }) => {
+                    if (!Credits) {
                         sectionCredit = [];
                         sectionCredit.push();                       
                         return false;
@@ -118,7 +120,7 @@ const promptTableofContent = () => {
         },
         {
             type: 'confirm',
-            name: 'confirmLicense',
+            name: 'License',
             message: 'Would you like to add a section about "License"?',
             default: false
         },
@@ -126,8 +128,8 @@ const promptTableofContent = () => {
             type: 'input',
             name: 'sectionLicense',
             message: "Enter your project's license here: ",
-            when: ({ confirmLicense }) => {
-                if (!confirmLicense) {
+            when: ({ License }) => {
+                if (!License) {
                     sectionLicense = [];
                     sectionLicense.push();                       
                     return false;
@@ -139,7 +141,7 @@ const promptTableofContent = () => {
         },
         {
             type: 'confirm',
-            name: 'confirmTests',
+            name: 'Tests',
             message: 'Would you like to add a section about "Tests"?',
             default: false
         },
@@ -147,8 +149,8 @@ const promptTableofContent = () => {
             type: 'input',
             name: 'sectionTests',
             message: 'Enter an example of your test: ',
-            when: ({ confirmTests }) => {
-                if (!confirmTests) {
+            when: ({ Tests }) => {
+                if (!Tests) {
                     sectionTests = [];
                     sectionTests.push();                       
                     return false;
@@ -164,7 +166,23 @@ const promptTableofContent = () => {
 }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data) {
+    
+    return new Promise((resolve, reject) => {
+        const fileName = './README.md';
+            
+        fs.writeFile(fileName, data, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'File created successfully'
+            })
+        })
+    })
+}
 
 // TODO: Create a function to initialize app
 function init() {
@@ -172,11 +190,16 @@ function init() {
         console.log(JSON.stringify(data));
     })
     .then(promptTableofContent)
-    .then((data) => {
-        console.log(JSON.stringify(data))
-})
-}
+    .then((data) => { 
+        console.log(JSON.stringify(data));
+        return generateMarkdown(data);
+     })
+    .then(readme => {
+        return writeToFile(readme)
+    })
+    .catch(err => { console.log(err) })
+};
 
 // Function call to initialize app
-init()
+init();
     
