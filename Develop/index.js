@@ -42,6 +42,111 @@ const questions = [
                 return true;
             }
         }
+    },
+    {
+        type: 'confirm',
+        name: 'Install',
+        message: 'Would you like to add a section about "Installation"?',
+        default: false
+    },
+        {
+            type: 'input',
+            name: 'sectionInstall',
+            message: 'Enter paragraph describing installation: ',
+            when: ({ Install }) => {
+                if (!Install) {
+                    sectionInstall = [];
+                    sectionInstall.push();                       
+                    return false;
+                } else {
+                    sectionInstall = [];
+                    return true;
+                }
+            } 
+        },
+    {
+        type: 'confirm',
+        name: 'Usage',
+        message: 'Would you like to add a section about "Usage"?',
+        default: false
+    },
+    {
+            type: 'input',
+            name: 'sectionUsage',
+            message: 'Enter a paragraph describing usage: ',
+            when: ({ Usage }) => {
+                if (!Usage) {
+                    sectionUsage = [];
+                    sectionUsage.push();                       
+                    return false;
+                } else {
+                    sectionUsage = [];
+                    return true;
+                }
+            } 
+    },
+    {
+        type: 'confirm',
+        name: 'Credits',
+        message: 'Would you like to add a section about "Credits"?',
+        default: false
+    },
+    {
+            type: 'input',
+            name: 'sectionCredit',
+            message: 'Enter a participant or contributor: ',
+            when: ({ Credits }) => {
+                if (!Credits) {
+                    sectionCredit = [];
+                    sectionCredit.push();                       
+                    return false;
+                } else {
+                    sectionCredit = [];
+                    return true;
+                }
+            } 
+    },
+    {
+        type: 'confirm',
+        name: 'License',
+        message: 'Would you like to add a section about "License"?',
+        default: false
+    },
+    {
+        type: 'input',
+        name: 'sectionLicense',
+        message: "Enter your project's license here: ",
+        when: ({ License }) => {
+            if (!License) {
+                sectionLicense = [];
+                sectionLicense.push();                       
+                return false;
+            } else {
+                sectionLicense = [];
+                return true;
+            }
+        } 
+    },
+    {
+        type: 'confirm',
+        name: 'Tests',
+        message: 'Would you like to add a section about "Tests"?',
+        default: false
+    },
+    {
+        type: 'input',
+        name: 'sectionTests',
+        message: 'Enter an example of your test: ',
+        when: ({ Tests }) => {
+            if (!Tests) {
+                sectionTests = [];
+                sectionTests.push();                       
+                return false;
+            } else {
+                sectionTests = [];
+                return true;
+            }
+        } 
     }
 ];
 
@@ -170,7 +275,7 @@ function writeToFile(data) {
     
     return new Promise((resolve, reject) => {
         const fileName = './README.md';
-            
+            console.log('this should be the data',data);
         fs.writeFile(fileName, data, err => {
             if (err) {
                 reject(err);
@@ -183,19 +288,17 @@ function writeToFile(data) {
         })
     })
 }
-
+var readme = {};
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions).then((data) => {
         console.log(JSON.stringify(data));
-    })
-    .then(promptTableofContent)
-    .then((data) => { 
-        console.log(JSON.stringify(data));
+        readme = JSON.stringify(data);
         return generateMarkdown(data);
-     })
+    })
     .then(readme => {
-        return writeToFile(readme)
+        // console.log(data);
+        return writeToFile(readme);
     })
     .catch(err => { console.log(err) })
 };

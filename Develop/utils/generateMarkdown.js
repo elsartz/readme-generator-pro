@@ -12,11 +12,14 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  const install = data.Install;
-    if (install) {
-     installation = `-### [Installation](#Installation)`
-    } else {
-      return installation = '';
+  console.log('data in markdown: ', data);
+  console.log(data.title);
+  console.log(data.Usage);
+  console.log(data.sectionInstall);
+  
+  const install = `-### [Installation](#Installation)`;
+    if (!data.Install) {
+      return install = '';      
     }
 
   const usage = data.Usage;
@@ -54,11 +57,13 @@ function generateMarkdown(data) {
   > ${data.paragraph}
 
   ## Table of Contents
-  ${installation}
+  ${install}
   ${usagerow}
   ${creditsrow}
   ${licenserow}
   ${testrow}
+
+  
 `;
 }
 
