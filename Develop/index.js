@@ -28,7 +28,7 @@ const questions = [
         type: 'confirm',
         name: 'full',
         message: 'Would you like to add a Full description of your project?',
-        default: false
+        default: true
     },
     {
         type: 'input',
@@ -36,10 +36,9 @@ const questions = [
         message: 'Please enter a paragraph about your project:',
         when: ({full}) => {
             if (!full) {
-                return false;
-            } else {
-                paragraph = '';
-                return true;
+             
+                return paragraph = ` `;
+                
             }
         }
     },
