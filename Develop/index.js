@@ -46,7 +46,7 @@ const questions = [
         type: 'confirm',
         name: 'Install',
         message: 'Would you like to add a section about "Installation"?',
-        default: false
+        default: true
     },
         {
             type: 'input',
@@ -54,10 +54,7 @@ const questions = [
             message: 'Enter paragraph describing installation: ',
             when: ({ Install }) => {
                 if (!Install) {                                        
-                    return false;
-                } else {
-                    sectionInstall = '';
-                    return true;
+                    return  sectionInstall = '';
                 }
             } 
         },
@@ -65,7 +62,7 @@ const questions = [
         type: 'confirm',
         name: 'Usage',
         message: 'Would you like to add a section about "Usage"?',
-        default: false
+        default: true
     },
     {
             type: 'input',
@@ -73,10 +70,7 @@ const questions = [
             message: 'Enter a paragraph describing usage: ',
             when: ({ Usage }) => {
                 if (!Usage) {                   
-                    return false;
-                } else {
-                    sectionUsage = '';
-                    return true;
+                    return sectionUsage = '';
                 }
             } 
     },
@@ -84,7 +78,7 @@ const questions = [
         type: 'confirm',
         name: 'Credits',
         message: 'Would you like to add a section about "Credits"?',
-        default: false
+        default: true
     },
     {
             type: 'input',
@@ -92,10 +86,7 @@ const questions = [
             message: 'Enter a participant or contributor: ',
             when: ({ Credits }) => {
                 if (!Credits) {             
-                    return false;
-                } else {
-                    sectionCredit = '';
-                    return true;
+                    return sectionCredit = '';
                 }
             } 
     },
@@ -117,10 +108,7 @@ const questions = [
         message: 'Enter an example of your test: ',
         when: ({ Tests }) => {
             if (!Tests) {                     
-                return false;
-            } else {
-                sectionTests = '';
-                return true;
+                return sectionTests = '';
             }
         } 
     }
