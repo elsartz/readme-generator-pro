@@ -54,12 +54,10 @@ const questions = [
             name: 'sectionInstall',
             message: 'Enter paragraph describing installation: ',
             when: ({ Install }) => {
-                if (!Install) {
-                    sectionInstall = [];
-                    sectionInstall.push();                       
+                if (!Install) {                                        
                     return false;
                 } else {
-                    sectionInstall = [];
+                    sectionInstall = '';
                     return true;
                 }
             } 
@@ -75,12 +73,10 @@ const questions = [
             name: 'sectionUsage',
             message: 'Enter a paragraph describing usage: ',
             when: ({ Usage }) => {
-                if (!Usage) {
-                    sectionUsage = [];
-                    sectionUsage.push();                       
+                if (!Usage) {                   
                     return false;
                 } else {
-                    sectionUsage = [];
+                    sectionUsage = '';
                     return true;
                 }
             } 
@@ -96,12 +92,10 @@ const questions = [
             name: 'sectionCredit',
             message: 'Enter a participant or contributor: ',
             when: ({ Credits }) => {
-                if (!Credits) {
-                    sectionCredit = [];
-                    sectionCredit.push();                       
+                if (!Credits) {             
                     return false;
                 } else {
-                    sectionCredit = [];
+                    sectionCredit = '';
                     return true;
                 }
             } 
@@ -123,12 +117,10 @@ const questions = [
         name: 'sectionTests',
         message: 'Enter an example of your test: ',
         when: ({ Tests }) => {
-            if (!Tests) {
-                sectionTests = [];
-                sectionTests.push();                       
+            if (!Tests) {                     
                 return false;
             } else {
-                sectionTests = [];
+                sectionTests = '';
                 return true;
             }
         } 
