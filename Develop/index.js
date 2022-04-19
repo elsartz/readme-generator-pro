@@ -101,25 +101,10 @@ const questions = [
             } 
     },
     {
-        type: 'confirm',
+        type: 'list',
         name: 'License',
-        message: 'Would you like to add a section about "License"?',
-        default: false
-    },
-    {
-        type: 'input',
-        name: 'sectionLicense',
-        message: "Enter your project's license here: ",
-        when: ({ License }) => {
-            if (!License) {
-                sectionLicense = [];
-                sectionLicense.push();                       
-                return false;
-            } else {
-                sectionLicense = [];
-                return true;
-            }
-        } 
+        message: 'What type of License do you want to?',
+        choices: ['Apache', 'MIT', 'BSD', 'GPL', 'no license']
     },
     {
         type: 'confirm',
