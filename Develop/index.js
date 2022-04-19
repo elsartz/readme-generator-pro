@@ -36,10 +36,10 @@ const questions = [
         message: 'Please enter a paragraph about your project:',
         when: ({full}) => {
             if (!full) {
-             
-                return paragraph = ` `;
+                paragraph = ` `;
+                return false; 
                 
-            }
+            } else return true;
         }
     },
     {
