@@ -54,7 +54,10 @@ const questions = [
             message: 'Enter paragraph describing installation: ',
             when: ({ Install }) => {
                 if (!Install) {                                        
-                    return  sectionInstall = '';
+                      sectionInstall = '';
+                      return false;
+                } else {
+                    return true;
                 }
             } 
         },
@@ -70,7 +73,10 @@ const questions = [
             message: 'Enter a paragraph describing usage: ',
             when: ({ Usage }) => {
                 if (!Usage) {                   
-                    return sectionUsage = '';
+                     sectionUsage = '';
+                     return false;
+                } else {
+                    return true;
                 }
             } 
     },
@@ -86,7 +92,10 @@ const questions = [
             message: 'Enter a participant or contributor: ',
             when: ({ Credits }) => {
                 if (!Credits) {             
-                    return sectionCredit = '';
+                     sectionCredit = '';
+                     return false;
+                } else {
+                    return true;
                 }
             } 
     },
@@ -108,7 +117,10 @@ const questions = [
         message: 'Enter an example of your test: ',
         when: ({ Tests }) => {
             if (!Tests) {                     
-                return sectionTests = '';
+                 sectionTests = '';
+                 return false;
+            } else { 
+                return true;
             }
         } 
     }
@@ -238,7 +250,7 @@ const promptTableofContent = () => {
 function writeToFile(data) {
     
     return new Promise((resolve, reject) => {
-        const fileName = './README.md';
+        const fileName = `./README_of_${data.title}.md`;
             console.log('this should be the data',data);
         fs.writeFile(fileName, data, err => {
             if (err) {
