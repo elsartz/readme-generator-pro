@@ -85,7 +85,7 @@ function generateMarkdown(data) {
   # Credits
     ${data.sectionCredit}
   ${renderLicenseSection(data.License)}
-    ${renderLicenseLink(data.License)}
+  ${renderLicenseLink(data.License)}
 
   # Tests
     ${data.sectionTests}
