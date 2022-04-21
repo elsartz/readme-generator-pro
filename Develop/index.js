@@ -1,9 +1,8 @@
 // TODO: Include packages needed for this application
-const ids = require('spdx-license-ids');
+// const ids = require('spdx-license-ids');            future input
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown.js');
-// console.log(ids);
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -102,8 +101,8 @@ const questions = [
     {
         type: 'list',
         name: 'License',
-        message: 'What type of License do you want to?',
-        choices: ['Apache', 'MIT', 'BSD', 'GPL', 'no license']
+        message: 'What type of License do you want to add?',
+        choices: ['apache-2.0', 'mit', 'bsl-1.0', 'mpl-2.0', 'gpl-3.0', 'no license']
     },
     {
         type: 'confirm',
@@ -126,131 +125,12 @@ const questions = [
     }
 ];
 
-const promptTableofContent = () => {
-    // if (!tableOfContent) {
-    //     tableOfContent.content = [];
-    // }
-    console.log(`
-    =============
-    Add a Section
-    =============
-    `);
-    return inquirer.prompt([
-        {
-            type: 'confirm',
-            name: 'Install',
-            message: 'Would you like to add a section about "Installation"?',
-            default: false
-        },
-            {
-                type: 'input',
-                name: 'sectionInstall',
-                message: 'Enter paragraph describing installation: ',
-                when: ({ Install }) => {
-                    if (!Install) {
-                        sectionInstall = [];
-                        sectionInstall.push();                       
-                        return false;
-                    } else {
-                        sectionInstall = [];
-                        return true;
-                    }
-                } 
-            },
-        {
-            type: 'confirm',
-            name: 'Usage',
-            message: 'Would you like to add a section about "Usage"?',
-            default: false
-        },
-        {
-                type: 'input',
-                name: 'sectionUsage',
-                message: 'Enter a paragraph describing usage: ',
-                when: ({ Usage }) => {
-                    if (!Usage) {
-                        sectionUsage = [];
-                        sectionUsage.push();                       
-                        return false;
-                    } else {
-                        sectionUsage = [];
-                        return true;
-                    }
-                } 
-        },
-        {
-            type: 'confirm',
-            name: 'Credits',
-            message: 'Would you like to add a section about "Credits"?',
-            default: false
-        },
-        {
-                type: 'input',
-                name: 'sectionCredit',
-                message: 'Enter a participant or contributor: ',
-                when: ({ Credits }) => {
-                    if (!Credits) {
-                        sectionCredit = [];
-                        sectionCredit.push();                       
-                        return false;
-                    } else {
-                        sectionCredit = [];
-                        return true;
-                    }
-                } 
-        },
-        {
-            type: 'confirm',
-            name: 'License',
-            message: 'Would you like to add a section about "License"?',
-            default: false
-        },
-        {
-            type: 'input',
-            name: 'sectionLicense',
-            message: "Enter your project's license here: ",
-            when: ({ License }) => {
-                if (!License) {
-                    sectionLicense = [];
-                    sectionLicense.push();                       
-                    return false;
-                } else {
-                    sectionLicense = [];
-                    return true;
-                }
-            } 
-        },
-        {
-            type: 'confirm',
-            name: 'Tests',
-            message: 'Would you like to add a section about "Tests"?',
-            default: false
-        },
-        {
-            type: 'input',
-            name: 'sectionTests',
-            message: 'Enter an example of your test: ',
-            when: ({ Tests }) => {
-                if (!Tests) {
-                    sectionTests = [];
-                    sectionTests.push();                       
-                    return false;
-                } else {
-                    sectionTests = [];
-                    return true;
-                }
-            } 
-        }
-        
-    ])
-    
-}
-
+let title = '';
 // TODO: Create a function to write README file
 function writeToFile(data) {
     
     return new Promise((resolve, reject) => {
-        const fileName = `./README_of_${data.title}.md`;
+        const fileName = `./README_of_${title}.md`;
             console.log('this should be the data',data);
         fs.writeFile(fileName, data, err => {
             if (err) {
@@ -273,7 +153,7 @@ function init() {
 // Function call to initialize app
 init()
     .then((data) => {
-        
+        title = data.title;
         generateMarkdown(data);
         return writeToFile(content);
     })
