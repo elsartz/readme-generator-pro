@@ -29,6 +29,6 @@
     This is an example
 
   # Questions
-  If you have any questions, please contact me at [email](elsartz@gmail.com)
+  If you have any questions, please contact me at [email](mailto:elsartz@gmail.com).
   My GitHub username is *elsartz* and ...
   my GitHub profile is [profile](https://github.com/elsartz)
