@@ -36,31 +36,6 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-    console.log(data);
-  // var install = `- [Installation](#installation)`;
-  //   if (!data.Install) {
-  //     return install = ` `;      
-  //   }
-
-  // var usage = `- [Usage](#usage)`;
-  //   if (!data.Usage) {
-  //     return usage = ` `;
-  //   }
-  
-  // var credits = `- [Credits](#credits)`;
-  //   if (!data.Credits) {
-  //     return credits = ` `;
-  //   }
-  
-  // var license = `- [License](#license)`;
-  //   if (!data.License) {
-  //     return license = ` `;
-  //   }
-
-  // var tests = `- [Tests](#tests)`;
-  //   if (!data.Tests) {
-  //     return tests = ` `;
-  //   }
   
   return content = `${renderLicenseBadge(data.License)}
   # ${data.title}
@@ -92,9 +67,9 @@ function generateMarkdown(data) {
     ${data.sectionTests}
 
   # Questions
-    If you have any questions, please contact me at ${data.email}
-    My GitHub username is ${data.gitname} and ...
-    my GitHub profile is ${data.github}
+  If you have any questions, please contact me at [email](mailto:${data.email}).
+  My GitHub username is *${data.gitname}* and ...
+  my GitHub profile is [profile](${data.github})
 `;
 }
 module.exports = generateMarkdown;

@@ -40,26 +40,23 @@ const questions = [
                 
             } else return true;
         }
-    },
-    
-        {
-            type: 'input',
-            name: 'sectionInstall',
-            message: 'Enter paragraph describing installation: ',
-            
-        },
-    
+    },    
     {
-            type: 'input',
-            name: 'sectionUsage',
-            message: 'Enter a paragraph describing usage: ',
-            
-    },
-    
+        type: 'input',
+        name: 'sectionInstall',
+        message: 'Enter paragraph describing installation: ',
+        
+    },    
     {
-            type: 'input',
-            name: 'sectionCredit',
-            message: 'Enter a participant or contributor: ',
+        type: 'input',
+        name: 'sectionUsage',
+        message: 'Enter a paragraph describing usage: ',
+            
+    },    
+    {
+        type: 'input',
+        name: 'sectionCredit',
+        message: 'Enter a participant or contributor: ',
             
     },
     {
@@ -67,15 +64,13 @@ const questions = [
         name: 'License',
         message: 'What type of License do you want to add?',
         choices: ['apache-2.0', 'mit', 'bsl-1.0', 'mpl-2.0', 'gpl-3.0', 'no license']
-    },
-    
+    },    
     {
         type: 'input',
         name: 'sectionTests',
         message: 'Enter an example of your test: ',
         
-    },
-    
+    },    
     {
         type: 'input',
         name: 'gitname',
@@ -86,13 +81,33 @@ const questions = [
         type: 'input',
         name: 'github',
         message: 'Enter your GitHub profile URL: ',
+        validate: hubInput => {
+            if (hubInput) {
+                return true;                
+            } else {
+                console.log('Please enter a GitHub profile ');
+                return false;
+            }
+        }
         
     },
     {
         type: 'input',
         name: 'email',
         message: 'Enter your email address: ',
-        
+        // I borrow this function :(
+        default: () => {},
+          validate: function (email) {
+  
+              valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+  
+              if (valid) {
+                  return true;
+              } else {
+                  console.log(" Please enter a valid email")
+                  return false;
+              }
+          }
     }
 ];
 
