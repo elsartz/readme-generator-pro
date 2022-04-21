@@ -2,7 +2,11 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (license !== 'no license') {
-    return `![badge](https://img.shields.io/badge/license-${license}-green)`;
+      if (license.match('-')) {
+        let oldbadge = license.split('-');
+        newbadge = oldbadge.join('--');
+      } else { newbadge = license}
+    return `![badge](https://img.shields.io/badge/license-${newbadge}-green)`;
   } else {
     return ' ';
   }
