@@ -31,7 +31,7 @@ Now it is time for the real action. Write the following code to the terminal in 
 ``` node index.js ```
 then fill up at least the required fields that you will be prompt relative to the project and enjoy the new ...project with professional look.
 
-![image](https://)
+![image](https://github.com/elsartz/readme-generator-pro/blob/main/Develop/screenshot.png)
 
 # Contributing
 
