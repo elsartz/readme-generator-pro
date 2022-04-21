@@ -16,7 +16,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license !== 'no license') {
-    return `[${license}](https://choosealicense.com/licenses/${license})`;
+    return `Follow the link for more info about the license [${license}](https://choosealicense.com/licenses/${license})`;
     } else {
       return ' ';
     }
@@ -37,30 +37,30 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
     console.log(data);
-  var install = `- [Installation](#installation)`;
-    if (!data.Install) {
-      return install = ` `;      
-    }
+  // var install = `- [Installation](#installation)`;
+  //   if (!data.Install) {
+  //     return install = ` `;      
+  //   }
 
-  var usage = `- [Usage](#usage)`;
-    if (!data.Usage) {
-      return usage = ` `;
-    }
+  // var usage = `- [Usage](#usage)`;
+  //   if (!data.Usage) {
+  //     return usage = ` `;
+  //   }
   
-  var credits = `- [Credits](#credits)`;
-    if (!data.Credits) {
-      return credits = ` `;
-    }
+  // var credits = `- [Credits](#credits)`;
+  //   if (!data.Credits) {
+  //     return credits = ` `;
+  //   }
   
-  var license = `- [License](#license)`;
-    if (!data.License) {
-      return license = ` `;
-    }
+  // var license = `- [License](#license)`;
+  //   if (!data.License) {
+  //     return license = ` `;
+  //   }
 
-  var tests = `- [Tests](#tests)`;
-    if (!data.Tests) {
-      return tests = ` `;
-    }
+  // var tests = `- [Tests](#tests)`;
+  //   if (!data.Tests) {
+  //     return tests = ` `;
+  //   }
   
   return content = `${renderLicenseBadge(data.License)}
   # ${data.title}
@@ -70,11 +70,12 @@ function generateMarkdown(data) {
   > ${data.paragraph}
 
   ## Table of Contents
-  ${install}
-  ${usage}
-  ${credits}
-  ${license}
-  ${tests}
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Tests](#tests)
+  - [Questions](#questions)
 
   # Installation
     ${data.sectionInstall}
@@ -82,13 +83,18 @@ function generateMarkdown(data) {
   # Usage
     ${data.sectionUsage}
 
-  # Credits
+  # Contributing
     ${data.sectionCredit}
   ${renderLicenseSection(data.License)}
   ${renderLicenseLink(data.License)}
 
   # Tests
     ${data.sectionTests}
+
+  # Questions
+    If you have any questions, please contact me at ${data.email}
+    My GitHub username is ${data.gitname} and ...
+    my GitHub profile is ${data.github}
 `;
 }
 module.exports = generateMarkdown;

@@ -41,62 +41,26 @@ const questions = [
             } else return true;
         }
     },
-    {
-        type: 'confirm',
-        name: 'Install',
-        message: 'Would you like to add a section about "Installation"?',
-        default: true
-    },
+    
         {
             type: 'input',
             name: 'sectionInstall',
             message: 'Enter paragraph describing installation: ',
-            when: ({ Install }) => {
-                if (!Install) {                                        
-                      sectionInstall = '';
-                      return false;
-                } else {
-                    return true;
-                }
-            } 
+            
         },
-    {
-        type: 'confirm',
-        name: 'Usage',
-        message: 'Would you like to add a section about "Usage"?',
-        default: true
-    },
+    
     {
             type: 'input',
             name: 'sectionUsage',
             message: 'Enter a paragraph describing usage: ',
-            when: ({ Usage }) => {
-                if (!Usage) {                   
-                     sectionUsage = '';
-                     return false;
-                } else {
-                    return true;
-                }
-            } 
+            
     },
-    {
-        type: 'confirm',
-        name: 'Credits',
-        message: 'Would you like to add a section about "Credits"?',
-        default: true
-    },
+    
     {
             type: 'input',
             name: 'sectionCredit',
             message: 'Enter a participant or contributor: ',
-            when: ({ Credits }) => {
-                if (!Credits) {             
-                     sectionCredit = '';
-                     return false;
-                } else {
-                    return true;
-                }
-            } 
+            
     },
     {
         type: 'list',
@@ -104,24 +68,31 @@ const questions = [
         message: 'What type of License do you want to add?',
         choices: ['apache-2.0', 'mit', 'bsl-1.0', 'mpl-2.0', 'gpl-3.0', 'no license']
     },
-    {
-        type: 'confirm',
-        name: 'Tests',
-        message: 'Would you like to add a section about "Tests"?',
-        default: false
-    },
+    
     {
         type: 'input',
         name: 'sectionTests',
         message: 'Enter an example of your test: ',
-        when: ({ Tests }) => {
-            if (!Tests) {                     
-                 sectionTests = '';
-                 return false;
-            } else { 
-                return true;
-            }
-        } 
+        
+    },
+    
+    {
+        type: 'input',
+        name: 'gitname',
+        message: 'Enter your GitHub username: ',
+        
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Enter your GitHub profile URL: ',
+        
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your email address: ',
+        
     }
 ];
 
