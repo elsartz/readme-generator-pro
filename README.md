@@ -33,7 +33,7 @@ then fill up at least the required fields that you will be prompt relative to th
 
 ![image](https://github.com/elsartz/readme-generator-pro/blob/main/Develop/screenshot.png)
 
-Watch a video how you can create such a file you too! [installation & usage tutorial](https://github.com/elsartz/readme-generator-pro/blob/main/Develop/install%20and%20usage.mp4)
+Watch a video how you can create such a file you too! [installation & usage tutorial](https://youtu.be/aSFKFd6TwVs)
 
 # Contributing
 
